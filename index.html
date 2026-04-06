@@ -834,6 +834,7 @@ function generarEjemplo() {
       const p=provs[Math.floor(Math.random()*provs.length)];
       const base=Math.round((p.min+Math.random()*(p.max-p.min))*100)/100;
       const cuota=Math.round(base*p.iva)/100;
-      
       const fecha=new Date(d.getFullYear(),d.getMonth(),1+Math.floor(Math.random()*26));
       datos.push({'Fecha':fecha.toISOString().split('T')[0],'Proveedor':p.n,'Descripción':'Compra '+p.cat.replace('_',' '),'Categoría':p.cat,'Base Imponible (€)':base,'IVA %':p.iva,'Cuota IVA (€)':cuota,'Total
+
+                  
