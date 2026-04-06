@@ -407,8 +407,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
     const {data,error}=await sb.auth.signInWithPassword({email,password:pass});
     if(error) throw error;
     await iniciarSesion(data.user);
-  } catch(e) { showErr('login-err', e.message==='Invalid login credentials'?'Email o contraseña incorrectos.':e.message); }
-  finally { btn.disabled=false; btn.textContent='Entrar'; }
+  } catch(e) { showErr('login-err', e.message==='Invalid login credentials'?'Email o contraseña incorrectos.':e.message); } finally { btn.disabled=false; btn.textContent='Entrar'; }
 });
 
 document.getElementById('reg-btn').addEventListener('click', async () => {
@@ -836,5 +835,3 @@ function generarEjemplo() {
       const cuota=Math.round(base*p.iva)/100;
       const fecha=new Date(d.getFullYear(),d.getMonth(),1+Math.floor(Math.random()*26));
       datos.push({'Fecha':fecha.toISOString().split('T')[0],'Proveedor':p.n,'Descripción':'Compra '+p.cat.replace('_',' '),'Categoría':p.cat,'Base Imponible (€)':base,'IVA %':p.iva,'Cuota IVA (€)':cuota,'Total
-
-                  
