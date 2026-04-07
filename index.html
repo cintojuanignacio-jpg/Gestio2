@@ -419,6 +419,43 @@ document.getElementById('reg-btn').addEventListener('click', async function() {
 
 document.getElementById('go-reg').addEventListener('click',    () => show('page-reg'));
 document.getElementById('go-login2').addEventListener('click', () => show('page-login'));
+document.getElementById('go-forgot').addEventListener('click', () => show('page-forgot'));
+document.getElementById('go-login3').addEventListener('click', () => show('page-login'));
+
+document.getElementById('forgot-btn').addEventListener('click', async function() {
+  hideEl('forgot-err'); hideEl('forgot-ok');
+  const email = document.getElementById('forgot-email').value.trim();
+  if (!email) { showErr('forgot-err', 'Introduce tu email.'); return; }
+  this.disabled = true; this.textContent = 'Enviando...';
+  try {
+    const { error } = await sb.auth.resetPasswordForEmail(email);
+    if (error) throw error;
+    showOk('forgot-ok', 'Enlace enviado! Revisa tu email.');
+  } catch(e) {
+    showErr('forgot-err', e.message);
+  } finally {
+    this.disabled = false; this.textContent = 'Enviar enlace';
+  }
+});
+
+document.getElementById('newpass-btn').addEventListener('click', async function() {
+  hideEl('newpass-err'); hideEl('newpass-ok');
+  const pass = document.getElementById('newpass-pass').value;
+  const pass2 = document.getElementById('newpass-pass2').value;
+  if (!pass || pass.length < 6) { showErr('newpass-err', 'Minimo 6 caracteres.'); return; }
+  if (pass !== pass2) { showErr('newpass-err', 'Las contraseñas no coinciden.'); return; }
+  this.disabled = true; this.textContent = 'Guardando...';
+  try {
+    const { error } = await sb.auth.updateUser({ password: pass });
+    if (error) throw error;
+    showOk('newpass-ok', 'Contraseña actualizada!');
+    setTimeout(() => show('page-login'), 1500);
+  } catch(e) {
+    showErr('newpass-err', e.message);
+  } finally {
+    this.disabled = false; this.textContent = 'Guardar contraseña';
+  }
+});
 
 async function logout() {
   await sb.auth.signOut();
