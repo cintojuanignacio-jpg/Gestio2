@@ -210,7 +210,15 @@ td{padding:10px 16px;font-size:12px}
     <div class="setup-card">
       <div style="font-size:18px;font-weight:600;margin-bottom:6px">Configura tu cuenta</div>
       <p style="color:#7a7875;font-size:13px;margin-bottom:20px;line-height:1.6">Conecta tu Google Sheet donde se guardaran tus facturas.</p>
-      <div class="setup-note">Comparte tu Sheet con <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="02616364677667706b632f606d7642616364677667706b632f6f6366706b662c6b636f2c65716770746b61676361616d776c762c616d6f">[email&#160;protected]</a></strong> como Editor.</div>
+      <div class="setup-note">
+  <div style="font-weight:600;margin-bottom:6px">Paso previo obligatorio</div>
+  Comparte tu Google Sheet con este email como <strong>Editor</strong> antes de continuar:
+  <div style="display:flex;align-items:center;gap:8px;margin-top:8px;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 10px">
+    <code style="flex:1;font-size:11px;color:#f0ede8;word-break:break-all">cafeteria-bot@cafeteria-madrid.iam.gserviceaccount.com</code>
+    <button onclick="navigator.clipboard.writeText('cafeteria-bot@cafeteria-madrid.iam.gserviceaccount.com').then(()=>{this.textContent='Copiado!';setTimeout(()=>this.textContent='Copiar',2000)})" style="background:#c8a96e;color:#1a1208;border:none;padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;white-space:nowrap;flex-shrink:0">Copiar</button>
+  </div>
+  <div style="margin-top:6px;font-size:11px">En Google Sheets: Compartir &rarr; pega el email &rarr; rol Editor &rarr; Enviar</div>
+</div>
       <div class="err" id="setup-err"></div>
       <label>ID de tu Google Sheet</label>
       <input id="setup-sheet" placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms">
@@ -441,7 +449,11 @@ document.head.appendChild(s);
     <div class="tab-content" id="tab-sistema" style="display:none">
       <div style="background:#161618;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:24px;margin-bottom:16px">
         <div style="font-size:13px;font-weight:600;margin-bottom:6px">Google Sheets</div>
-        <div style="font-size:12px;color:#7a7875;margin-bottom:16px">Aqui se guardan todas tus facturas. Puedes cambiarlo si necesitas usar un Sheet diferente.</div>
+        <div style="font-size:12px;color:#7a7875;margin-bottom:16px">Aqui se guardan todas tus facturas. El Sheet debe estar compartido con este email como Editor:</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;background:#1e1e21;border-radius:6px;padding:8px 10px;border:.5px solid rgba(200,169,110,.3)">
+          <code style="flex:1;font-size:11px;color:#c8a96e">cafeteria-bot@cafeteria-madrid.iam.gserviceaccount.com</code>
+          <button onclick="navigator.clipboard.writeText('cafeteria-bot@cafeteria-madrid.iam.gserviceaccount.com').then(()=>{this.textContent='Copiado!';setTimeout(()=>this.textContent='Copiar',2000)})" style="background:#c8a96e;color:#1a1208;border:none;padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;white-space:nowrap;flex-shrink:0">Copiar</button>
+        </div>
         <div class="err" id="sistema-err"></div>
         <div class="suc" id="sistema-ok"></div>
         <label>ID de tu Google Sheet</label>
